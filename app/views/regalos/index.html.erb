@@ -1,0 +1,53 @@
+<style>
+  .reserva {display:none}
+</style>
+
+<% @regalos.each do |regalo| %>
+  <div>
+    <%= regalo.descripcion %>
+    <%= link_to regalo.tienda, regalo.url, {'target' => '_blank'} %>
+    <% if regalo.reservado? %>
+      Este regalo ya fue reservado
+    <% else %>
+      <%= link_to 'Reservar', '#', {'class' => 'reservar'} %>
+    <% end %>
+    <%= form_for regalo, :html => {:class => 'reserva'} do |f| %>
+      <%= f.text_field :nombre_amigo %>
+      <%= f.text_field :email_amigo %>
+      <%= link_to 'Cancelar', '#', {'class' => 'cancelar'} %>
+      <%= f.submit 'Reservar' %>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+
+    $('a.reservar').click(function(){
+      $(this).siblings('form.reserva').show();
+    });
+
+    $('form.reserva a.cancelar').click(function(){
+      $(this).parent('form.reserva').hide();
+    });
+
+    $('form.reserva').submit(function(e){
+      var $form = $(this);
+      $form.ajaxSubmit({
+        success:function(){
+          $form.hide();
+          var $link = $form.siblings('a.reservar');
+          $link.after('Este regalo ya fue reservado');
+          $link.remove();
+          alert('¡Has reservado este regalo!');
+        },
+        error:function(){
+          $form.hide();
+          alert('Hubo un error al reservar el regalo. Intenta nuevamente.');
+        }
+      });
+      return false;
+    });
+
+  });
+</script>

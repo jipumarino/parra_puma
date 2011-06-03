@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  descripcion: MyText
+  email_amigo: MyString
+  nombre_amigo: MyString
+  url: MyString
+  reservado: false
+
+two:
+  descripcion: MyText
+  email_amigo: MyString
+  nombre_amigo: MyString
+  url: MyString
+  reservado: false
