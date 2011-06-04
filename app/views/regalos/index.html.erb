@@ -73,9 +73,18 @@
           $link.remove();
           alert('¡Has reservado este regalo!');
         },
-        error:function(){
-          $form.hide();
-          alert('Hubo un error al reservar el regalo. Intenta nuevamente.');
+        statusCode: {
+          403:function(){
+            $form.hide();
+            var $link = $form.parents('.regalo').find('a.reservar');
+            $link.after('Este regalo ya fue reservado');
+            $link.remove();
+            alert('El regalo ya fue reservado; busca otro.');
+          },
+          400:function(){
+            $form.hide();
+            alert('No ingresaste tu nombre o email; intenta de nuevo.');
+          }
         }
       });
       return false;
