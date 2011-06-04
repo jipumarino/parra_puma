@@ -1,22 +1,52 @@
 <style>
-  .reserva {display:none}
+  .regalo {
+    background-color: #3B5998;
+    color: white;
+    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+    
+    font-size: 14px;
+    margin:20px 300px;
+    padding:15px;
+  }
+  .reserva {
+    display:none;
+    padding:10px;
+    margin:20px 10px 5px;
+    background-color: #627AAD;
+    border: 1px solid #1D4088;
+  }
+  a {
+    color:#ddd;
+  }
+  .estado-reserva {
+    margin-top:10px;
+    font-size:12px;
+  }
+  .links-reserva {
+    text-align:right;
+    margin-top:5px;
+  }
 </style>
 
 <% @regalos.each do |regalo| %>
-  <div>
-    <%= regalo.descripcion %>
+  <div class="regalo">
+    <%= regalo.descripcion %> en
     <%= link_to regalo.tienda, regalo.url, {'target' => '_blank'} %>
-    <% if regalo.reservado? %>
-      Este regalo ya fue reservado
-    <% else %>
-      <%= link_to 'Reservar', '#', {'class' => 'reservar'} %>
-    <% end %>
-    <%= form_for regalo, :html => {:class => 'reserva'} do |f| %>
-      <%= f.text_field :nombre_amigo %>
-      <%= f.text_field :email_amigo %>
-      <%= link_to 'Cancelar', '#', {'class' => 'cancelar'} %>
-      <%= f.submit 'Reservar' %>
-    <% end %>
+    <div class="estado-reserva">
+      <% if regalo.reservado? %>
+        Este regalo ya fue reservado
+      <% else %>
+        <%= link_to 'Reservar', '', {'class' => 'reservar'} %>
+      <% end %>
+      <%= form_for regalo, :html => {:class => 'reserva'} do |f| %>
+        Nombre <%= f.text_field :nombre_amigo %>
+        Email <%= f.text_field :email_amigo %>
+        <div class="links-reserva">
+          <%= link_to 'Cancelar', '', {'class' => 'cancelar'} %> | 
+          <%= link_to 'Confirmar reserva', '', {'class' => 'enviar-reserva'} %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
 
@@ -25,18 +55,20 @@
 
     $('a.reservar').click(function(){
       $(this).siblings('form.reserva').show();
+      return false;
     });
 
     $('form.reserva a.cancelar').click(function(){
-      $(this).parent('form.reserva').hide();
+      $(this).parents('form.reserva').hide();
+      return false;
     });
 
-    $('form.reserva').submit(function(e){
-      var $form = $(this);
+    $('a.enviar-reserva').click(function(e){
+      var $form = $(this).parents('form');
       $form.ajaxSubmit({
         success:function(){
           $form.hide();
-          var $link = $form.siblings('a.reservar');
+          var $link = $form.parents('.regalo').find('a.reservar');
           $link.after('Este regalo ya fue reservado');
           $link.remove();
           alert('¡Has reservado este regalo!');

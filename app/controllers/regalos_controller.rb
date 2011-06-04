@@ -4,7 +4,6 @@ class RegalosController < ApplicationController
   end
 
   def update
-    # debugger
     regalo = Regalo.find params[:id]
     if regalo.update_attributes params[:regalo]
       render :text => 'OK', :status => 200

@@ -6,6 +6,7 @@ class CreateRegalos < ActiveRecord::Migration
       t.string :nombre_amigo
       t.string :url
       t.string :tienda
+      t.boolean :reservado
 
       t.timestamps
     end
