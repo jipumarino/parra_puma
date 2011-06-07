@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603123453) do
+ActiveRecord::Schema.define(:version => 20110607135403) do
+
+  create_table "productos", :force => true do |t|
+    t.string   "nombre"
+    t.string   "url"
+    t.integer  "cantidad"
+    t.integer  "regalo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "regalos", :force => true do |t|
     t.text     "descripcion"
@@ -21,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20110603123453) do
     t.boolean  "reservado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "nombre"
+    t.integer  "precio"
   end
 
 end

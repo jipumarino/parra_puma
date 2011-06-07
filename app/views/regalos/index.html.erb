@@ -27,12 +27,30 @@
     text-align:right;
     margin-top:5px;
   }
+  .descripcion {
+    font-size:13px;
+    margin-top:3px;
+  }
+  .links {
+    float:right;
+  }
+  .precio {
+    float:right;
+    margin-top:3px;
+  }
 </style>
 
 <% @regalos.each do |regalo| %>
   <div class="regalo">
-    <%= regalo.descripcion %> en
-    <%= link_to regalo.tienda, regalo.url, {'target' => '_blank'} %>
+    <div class="links">
+      Links:
+      <% regalo.productos.each_with_index do |p,i| %>
+        <%= link_to (i+65).chr, p.url, {:target => '_blank'} -%><%= "×#{p.cantidad}" if p.cantidad -%><%= "," if i<regalo.productos.size-1 %>
+      <% end %>
+    </div>
+    <div><%= regalo.nombre %> </div>
+    <div class="precio">USD <%= regalo.precio %> </div>
+    <div class="descripcion"><%= regalo.descripcion %></div>
     <div class="estado-reserva">
       <% if regalo.reservado? %>
         Este regalo ya fue reservado

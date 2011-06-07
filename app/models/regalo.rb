@@ -1,4 +1,6 @@
 class Regalo < ActiveRecord::Base
+  has_many :productos
+
   validates :email_amigo, :presence => true
   validates :nombre_amigo, :presence => true
   validate do |regalo|

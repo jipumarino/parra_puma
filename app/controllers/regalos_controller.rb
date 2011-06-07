@@ -1,6 +1,6 @@
 class RegalosController < ApplicationController
   def index
-    @regalos = Regalo.all
+    @regalos = Regalo.includes(:productos)
   end
 
   def update
