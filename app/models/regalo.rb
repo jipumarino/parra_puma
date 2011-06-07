@@ -1,6 +1,6 @@
 class Regalo < ActiveRecord::Base
-  has_many :productos
-  accepts_nested_attributes_for :productos
+  has_many :productos, :dependent => :destroy
+  accepts_nested_attributes_for :productos, :allow_destroy => true, :reject_if => proc { |attributes| attributes['url'].blank? }
 
   validate do |regalo|
     errors.add(:base, "Ya esta reservado") if reservado?

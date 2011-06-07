@@ -8,7 +8,8 @@ class Admin::RegalosController < ApplicationController
   end
 
   def edit
-    @regalo = Regalo.find params[:id]
+    @regalo = Regalo.find params[:id], :include => :productos
+    10.times { @regalo.productos.build }  
   end
   
   def update
@@ -19,6 +20,7 @@ class Admin::RegalosController < ApplicationController
 
   def new
     @regalo = Regalo.new
+    10.times { @regalo.productos.build }  
   end
 
   def create
