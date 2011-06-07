@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Precio</th>
+    <th>Reservado</th>
+    <th>Nombre amigo</th>
+    <th>Email amigo</th>
+    <th></th>
+  </tr>
+  <% @regalos.each do |r| %>
+    <tr>
+      <td><%= r.nombre %></td>
+      <td><%= r.descripcion %></td>
+      <td><%= r.precio %></td>
+      <td><%= r.reservado? %></td>
+      <td><%= r.nombre_amigo %></td>
+      <td><%= r.email_amigo %></td>
+      <td>
+        <%= link_to 'Editar', edit_admin_regalo_path(r) %>
+        <%= link_to 'Eliminar', admin_regalo_path(r), :method => :delete, :confirm => 'Yeah?' %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Nuevo', new_admin_regalo_path %>
+
+  

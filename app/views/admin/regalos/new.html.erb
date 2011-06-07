@@ -1,0 +1,9 @@
+<%= form_for @regalo, :url => admin_regalos_path do |f| %>
+  <p>Nombre <%= f.text_field :nombre %></p>
+  <p>Descripción <%= f.text_field :descripcion %></p>
+  <p>Precio <%= f.text_field :precio %></p>
+  <p>Reservado <%= f.text_field :reservado? %></p>
+  <p>Nombre amigo <%= f.text_field :nombre_amigo %></p>
+  <p>Email amigo <%= f.text_field :email_amigo %></p>
+  <p><%= f.submit 'Guardar' %></p>
+<% end %>
