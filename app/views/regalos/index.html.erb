@@ -55,16 +55,16 @@
       <% if regalo.reservado? %>
         Este regalo ya fue reservado
       <% else %>
-        <%= link_to 'Reservar', '', {'class' => 'reservar'} %>
+        <%= link_to 'Reservar/Reserve', '', {'class' => 'reservar'} %>
       <% end %>
       <%= form_for regalo, :html => {:class => 'reserva'} do |f| %>
-        Nombre <%= f.text_field :nombre_amigo %>
+        Nombre/Name <%= f.text_field :nombre_amigo %>
         Email <%= f.text_field :email_amigo %>
         <br>
         Comentario <br> <%= f.text_area :comentario, :rows => 3 %>
         <div class="links-reserva">
-          <%= link_to 'Cancelar', '', {'class' => 'cancelar'} %> | 
-          <%= link_to 'Confirmar reserva', '', {'class' => 'enviar-reserva'} %>
+          <%= link_to 'Cancelar/Cancel', '', {'class' => 'cancelar'} %> | 
+          <%= link_to 'Confirmar reserva/Confirm', '', {'class' => 'enviar-reserva'} %>
         </div>
       <% end %>
     </div>
