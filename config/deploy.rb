@@ -14,7 +14,13 @@ role :web, "panda2"
 role :app, "panda2"
 role :db,  "panda2", :primary => true
 
+after "deploy:update_code", "deploy:bundle_install"
+
 namespace :deploy do
+  task :bundle_install, :roles => :app do
+    run "cd #{release_path} && bundle install"
+  end
+
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
