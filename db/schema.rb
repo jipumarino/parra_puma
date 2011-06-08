@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110607135403) do
+ActiveRecord::Schema.define(:version => 20110608123752) do
 
   create_table "productos", :force => true do |t|
     t.string   "nombre"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110607135403) do
     t.datetime "updated_at"
     t.string   "nombre"
     t.integer  "precio"
+    t.text     "comentario"
   end
 
 end

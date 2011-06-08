@@ -5,6 +5,7 @@
   <p>Reservado <%= f.text_field :reservado? %></p>
   <p>Nombre amigo <%= f.text_field :nombre_amigo %></p>
   <p>Email amigo <%= f.text_field :email_amigo %></p>
+  <p>Comentario <%= f.text_area :comentario, :rows => 5 %></p>
   <%= f.fields_for :productos do |p| %>
     <p>URL <%= p.text_field :url %>, cantidad <%= p.text_field :cantidad %> Eliminar <%= p.check_box :_destroy %></p>
   <% end %>

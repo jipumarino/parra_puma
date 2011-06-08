@@ -20,6 +20,7 @@
       <td><%= r.reservado? %></td>
       <td><%= r.nombre_amigo %></td>
       <td><%= r.email_amigo %></td>
+      <td><%= r.comentario %></td>
       <td>
         <%= link_to 'Editar', edit_admin_regalo_path(r) %>
         <%= link_to 'Eliminar', admin_regalo_path(r), :method => :delete, :confirm => 'Yeah?' %>
