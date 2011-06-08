@@ -19,6 +19,6 @@ namespace :deploy do
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "chown nginx:nginx -R #{release_path}"
-    run "cd #{release_path} && passenger stop -p 3001 && passenger start -p 3001 -d -e production"
+    run "cd #{release_path} && passenger stop -p 3001 && sleep 5 && passenger start -p 3001 -d -e production"
   end
 end
