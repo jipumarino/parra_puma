@@ -29,5 +29,5 @@ end
 
 group :production do
   gem 'therubyracer'
-  gem 'activerecord-mysql-adapter'
+  gem 'mysql'
 end
