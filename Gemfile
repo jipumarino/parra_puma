@@ -5,6 +5,7 @@ gem 'rails', '3.1.0.rc1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'mysql2'
 gem 'sqlite3'
 
 # Asset template engines
@@ -29,5 +30,4 @@ end
 
 group :production do
   gem 'therubyracer'
-  gem 'mysql'
 end
