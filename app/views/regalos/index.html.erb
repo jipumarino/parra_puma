@@ -72,6 +72,26 @@
     </div>
   </div>
 <% end %>
+<div class="regalo">
+  <div>Other Gift / Otro Regalo</div>
+  <div class="descripcion">
+    <p>Use this category if you have another gift in mind and you don't know how to send it to us or if you need our bank account info. Use the comments section below to specify.</p>
+      <p>Usa esta categoría si quieres regalarnos algo que no está en la lista y no sabes como hacérnoslo llegar, o si necesitas información de nuestras cuentas bancarias. Puedes usar la sección de comentarios para poner detalles específicos.</p>
+  </div>
+  <div class="estado-reserva">
+    <%= link_to 'Reservar/Reserve', '', {'class' => 'reservar'} %>
+    <%= form_for :regalo, :html => {:class => 'reserva'} do |f| %>
+      Nombre/Name <%= f.text_field :nombre_amigo %>
+      Email <%= f.text_field :email_amigo %>
+      <br>
+      Comentario/Comment <br> <%= f.text_area :comentario, :rows => 3 %>
+      <div class="links-reserva">
+        <%= link_to 'Cancelar/Cancel', '', {'class' => 'cancelar'} %> | 
+        <%= link_to 'Confirmar/Confirm', '', {'class' => 'enviar-reserva'} %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(function(){

@@ -1,6 +1,6 @@
 class RegalosController < ApplicationController
   def index
-    @regalos = Regalo.includes(:productos)
+    @regalos = Regalo.includes(:productos).where('nombre is not NULL')
   end
 
   def update
@@ -15,4 +15,11 @@ class RegalosController < ApplicationController
     end
   end
 
+  def create
+    if Regalo.create params[:regalo]
+      render :text => 'ok', :status => 200
+    else
+      render :text => 'error: campo vacio', :status => 400
+    end
+  end
 end
