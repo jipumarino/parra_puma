@@ -1,4 +1,14 @@
 <style>
+  .bienvenido {
+    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+    width:670px;
+    font-size: 13px;
+    margin:20px auto;
+    padding:15px;
+  }
+  .bienvenido.ingles {
+    display:none;
+  }
   .regalo {
     background-color: #3B5998;
     border: 1px solid #1D4088;
@@ -18,6 +28,9 @@
   }
   a {
     color:#ddd;
+  }
+  a.cambiar-idioma {
+    color: #222;
   }
   .estado-reserva {
     margin-top:10px;
@@ -41,6 +54,22 @@
 </style>
 
 <%= image_tag 'banner.png', :style => 'margin:20px auto; display:block;' %>
+
+<div class="bienvenido espanol">
+  <p>Hola, esta es nuestra Lista de Novios. Acá encontrarás un lista de cosas que necesitamos y que puedes usar como una guía en el caso que nos quieras hacer un regalo. Cada regalo tiene una descripción y links para ver exactamente qué nos estas regalando. El costo del regalo es un aproximado del precio, impuestos y costos de envío. Para reservar un regalo, sólo has click en "Reservar", ingresa tu nombre y email, luego nosotros te contactaremos. Si te gusta un ítem especifico pero se aleja de tu presupuesto, ten la confianza de agruparte con otros amigos y hacer un regalo en conjunto.</p> 
+  <p>Por último, si quieres regalarnos algo que no está en la lista y no sabes como hacérnoslo llegar, o necesitas información de nuestras cuentas bancarias, por favor anda a "Otro regalo" y agrega ahí tu información.</p> 
+  <p>Muchas Gracias</p>
+  <p>Javi &amp; Álvaro</p>
+  <%= link_to 'View in English', '', {'class' => 'cambiar-idioma', 'data-idioma' => 'ingles'} %>
+</div>
+
+<div class="bienvenido ingles">
+  <p>Hi, this is our Wedding Registry. Here you'll find a list of things we need and which you may use as guidance in case you want to give us a present. Each gift has a description and links so you'll know exactly what you are giving us. The price of the gift is an approximate of its costs, taxes and shipping. To reserve a gift just click "Reserve," add your name and email, then we will contact you. If you really like a gift but its out of your budget, feel free to group with other people and give it as a group gift.</p>
+  <p>Finally, if you have another gift in mind and you don't know how to send it to us or if you need our bank account info, please go to "Other Gifts" and add your information there.</p>
+  <p>Thanks!</p>
+  <p>Javi & Álvaro</p>
+  <%= link_to 'Ver en español', '', {'class' => 'cambiar-idioma', 'data-idioma' => 'espanol'} %>
+</div>
 
 <% @regalos.each do |regalo| %>
   <div class="regalo">
@@ -130,6 +159,12 @@
           }
         }
       });
+      return false;
+    });
+
+    $('a.cambiar-idioma').click(function(e){
+      $('.bienvenido').hide();
+      $('.bienvenido.'+$(this).data('idioma')).show();
       return false;
     });
 
