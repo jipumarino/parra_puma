@@ -1,4 +1,6 @@
 class Admin::RegalosController < ApplicationController
+  before_filter :authentication_check
+
   def index
     @regalos = Regalo.all
   end
@@ -31,5 +33,12 @@ class Admin::RegalosController < ApplicationController
   def destroy
     Regalo.find(params[:id]).destroy
     redirect_to :action => :index
+  end
+
+  private
+  def authentication_check
+    authenticate_or_request_with_http_basic do |user, password|
+      user == 'parrapuma' && password == 'joloijolito'
+    end
   end
 end
